@@ -5,11 +5,11 @@
         <div class="row">
           <div class="input-field col s6">
             <input
-              placeholder="Placeholder"
               id="first_name"
               type="text"
               class="validate"
               v-model="user.firstName"
+              required
             />
             <label for="first_name">Nome</label>
           </div>
@@ -19,6 +19,7 @@
               type="text"
               class="validate"
               v-model="user.lastName"
+              required
             />
             <label for="last_name">Sobrenome</label>
           </div>
@@ -26,30 +27,32 @@
 
         <div class="row">
           <div class="input-field col s6">
-            <input id="text" type="text" class="validate" v-model="user.cpf" />
+            <input id="text" type="text" class="validate" v-model="user.cpf" maxlength="11" required/>
             <label for="text">CPF</label>
           </div>
         </div>
       </form>
-      <router-link to="/">
-        <button
-          class="btn waves-effect waves-light pink darken-1"
-          name="action"
-        >
-          Voltar
-          <i class="material-icons left">arrow_back</i>
-        </button>
-      </router-link>
-      <button
-        @click="send()"
-        class="btn waves-effect waves-light"
-        type="submit"
-        name="action"
-      >
-        Enviar
-        <i class="material-icons right">send</i>
-      </button>
     </div>
+      <div class="buttons">
+        <router-link to="/lista-pessoas">
+            <button
+              class="btn waves-effect waves-light pink darken-1"
+              name="action"
+            >
+              Voltar
+              <i class="material-icons left">arrow_back</i>
+            </button>
+        </router-link>
+          <button
+            @click="send()"
+            class="btn waves-effect waves-light"
+            type="submit"
+            name="action"
+          >
+            Enviar
+            <i class="material-icons right">send</i>
+          </button>
+      </div>
   </div>
 </template>
 
@@ -84,3 +87,17 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  #myform{
+    max-width: 800px;
+    margin: 5vh 30vw;
+  }
+
+  .buttons{
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: auto 30.5vw;
+  }
+</style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="noUsers">
-      <h2>Não há usuários cadastrados ainda.</h2>
+      <h3>Não há usuários cadastrados ainda.</h3>
       <router-link to="/nova-pessoa">
         <button class="btn waves-effect waves-light">
           Fazer um cadastro agora
@@ -23,5 +23,9 @@ export default {
    margin: 30vh auto;
    max-width: 800px;
    min-width: 320px;
+ }
+
+ button{
+   margin-top: 20px;
  }
 </style>

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 <template>
   <div>
-    <NoUsers />
+    <NoUsers v-if="users==0"/>
     <table v-if="users != 0">
       <thead>
         <tr>
@@ -78,6 +78,7 @@ export default {
 
 <style scoped>
  div{
-   margin: 20px 10px 0px 10px;
+   max-width: 800px;
+   margin: auto;
  }
 </style>
