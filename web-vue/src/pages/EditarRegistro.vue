@@ -9,7 +9,7 @@
                 id="first_name"
                 type="text"
                 class="validate"
-                :v-model="user.firstName"
+                v-model="user.firstName"
                 required
               />
               <label for="first_name">Nome</label>
@@ -19,7 +19,7 @@
                 id="last_name"
                 type="text"
                 class="validate"
-                :v-model="user.lastName"
+                v-model="user.lastName"
                 required
               />
               <label for="last_name">Sobrenome</label>
@@ -31,7 +31,7 @@
                 id="text"
                 type="text"
                 class="validate"
-                :v-model="user.cpf"
+                v-model="user.cpf"
                 maxlength="11"
                 required
               />
@@ -39,12 +39,12 @@
             </div>
           </div>
           <button
-            @click="send(e)"
+            @click="update()"
             class="btn waves-effect waves-light"
             type="submit"
             name="action"
           >
-            Enviar
+            Atualizar Registro
             <i class="material-icons right">send</i>
           </button>
           <router-link to="lista-pessoas">
@@ -63,62 +63,44 @@
 </template>
 
 <script>
-import UserServices from '../services/UserServices'
+import axios from 'axios'
 
 export default {
-  name: 'NovaPessoa',
+  name: 'EditarRegistro',
 
   data() {
     return {
       user: {
-        firstName: null,
-        lastName: null,
-        cpf: null
-      },
-      users: [],
-      isDisabled: true,
-      errors: []
+        firstName: '',
+        lastName: '',
+        cpf: ''
+      }
     }
   },
+  mounted() {
+    this.findAll()
+  },
   methods: {
-    send() {
-      if (
-        this.user.firstName == null ||
-        this.user.lastName == null ||
-        this.user.cpf == null
-      ) {
-        this.isDisabled = true
-        alert('error')
-      } else {
-        this.isDisabled = false
-        UserServices.save(this.user)
-          .then(res => {
-            this.user = {}
-            // eslint-disable-next-line no-console
-            console.log(res.data)
-          })
-          .catch(err => {
-            // eslint-disable-next-line no-console
-            console.log(err)
-          })
-      }
+    findAll() {
+      axios
+        .get(`http://localhost:3000/users/${this.$route.params.id}`)
+        .then(res => {
+          const { firstName, lastName, cpf } = res.data
+          ;(this.user.firstName = firstName), (this.user.lastName = lastName), (this.user.cpf = cpf);
+          // eslint-disable-next-line no-console
+          console.log(firstName, lastName)
+        })
+    },
+
+    update() {
+      axios
+        .put(`http://localhost:3000/users/${this.$route.params.id}`, this.user)
+        .then(res => {
+          this.user = {}
+          // eslint-disable-next-line no-console
+          console.log(res)
+        })
     }
   }
 }
 </script>
-
-<style scoped>
-#form-container {
-  max-width: 800px;
-  margin: auto;
-}
-
-.buttons {
-  max-width: 800px;
-  margin: auto;
-}
-
-button {
-  margin-right: 5px;
-}
-</style>

@@ -19,5 +19,7 @@
 </template>
 
 <style scoped>
-
+nav{
+  margin: auto;
+}
 </style>
