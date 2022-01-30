@@ -96,7 +96,6 @@ export default {
           ;(this.user.firstName = firstName),
             (this.user.lastName = lastName),
             (this.user.cpf = cpf)
-          // eslint-disable-next-line no-console
           console.log(firstName, lastName)
         })
     },
@@ -106,7 +105,7 @@ export default {
         .put(`https://api-register-users.herokuapp.com/users/${this.$route.params.id}`, this.user)
         .then(res => {
           this.user = {}
-          // eslint-disable-next-line no-console
+          document.location.reload()
           console.log(res)
         })
     }
