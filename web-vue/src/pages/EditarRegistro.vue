@@ -28,37 +28,29 @@
           <div class="row">
             <div class="input-field col s6">
               <input
-                id="text"
-                type="text"
+                type="tel"
+                v-mask="'###.###.###-##'"
                 class="validate"
                 v-model="user.cpf"
-                maxlength="11"
                 required
               />
               <label for="text" class="active">CPF</label>
             </div>
           </div>
-          <button
-            @click="update()"
-            class="btn waves-effect waves-light"
-            type="submit"
-            name="action"
-            :disabled="
-              $v.user.cpf.$invalid == isDisabled ||
-                $v.user.lastName.$invalid == isDisabled ||
-                $v.user.firstName.$invalid
-            "
-          >
-            Atualizar Registro
-            <i class="material-icons right">send</i>
-          </button>
-          <router-link to="lista-pessoas">
+          <router-link to="../lista-pessoas">
             <button
-              class="btn waves-effect waves-light pink darken-1"
+              @click="update()"
+              class="btn waves-effect waves-light"
+              type="submit"
               name="action"
+              :disabled="
+                $v.user.cpf.$invalid == isDisabled ||
+                  $v.user.lastName.$invalid == isDisabled ||
+                  $v.user.firstName.$invalid
+              "
             >
-              Voltar
-              <i class="material-icons left">arrow_back</i>
+              Atualizar Registro
+              <i class="material-icons right">send</i>
             </button>
           </router-link>
         </form>
@@ -69,7 +61,7 @@
 
 <script>
 import axios from 'axios'
-import { required } from 'vuelidate/lib/validators'
+import { required, minLength } from 'vuelidate/lib/validators'
 
 export default {
   name: 'EditarRegistro',
@@ -79,16 +71,16 @@ export default {
       user: {
         firstName: '',
         lastName: '',
-        cpf: '',
-        isDisabled: true
-      }
+        cpf: ''
+      },
+      isDisabled: true
     }
   },
   validations: {
     user: {
       firstName: { required },
       lastName: { required },
-      cpf: { required }
+      cpf: { required, minLength: minLength(14) }
     }
   },
 
@@ -129,4 +121,15 @@ export default {
   position: absolute;
   top: 10%;
 }
+
+/* input[type='number']::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+} */
+
 </style>

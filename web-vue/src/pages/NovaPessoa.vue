@@ -19,7 +19,6 @@
                 type="text"
                 class="validate"
                 v-model="$v.user.lastName.$model"
-                
               />
               <label for="last_name">Sobrenome</label>
             </div>
@@ -27,26 +26,14 @@
           <div class="row">
             <div class="input-field col s6">
               <input
-                id="text"
-                type="text"
+                v-mask="'###.###.###-##'"
+                type="tel"
                 class="validate"
                 v-model="$v.user.cpf.$model"
-                maxlength="11"
               />
               <label for="text">CPF</label>
             </div>
           </div>
-          <button
-            @click="send()"
-            :disabled="$v.user.cpf.$invalid == isDisabled || $v.user.lastName.$invalid == isDisabled || $v.user.firstName.$invalid"
-            class="btn waves-effect waves-light"
-            type="submit"
-            name="action"
-            id="submit"
-          >
-            Enviar
-            <i class="material-icons right">send</i>
-          </button>
           <router-link to="lista-pessoas">
             <button
               class="btn waves-effect waves-light pink darken-1"
@@ -56,6 +43,21 @@
               <i class="material-icons left">arrow_back</i>
             </button>
           </router-link>
+          <button
+            @click="send()"
+            :disabled="
+              $v.user.cpf.$invalid == isDisabled ||
+                $v.user.lastName.$invalid == isDisabled ||
+                $v.user.firstName.$invalid
+            "
+            class="btn waves-effect waves-light"
+            type="submit"
+            name="action"
+            id="submit"
+          >
+            Enviar
+            <i class="material-icons right">send</i>
+          </button>
         </form>
       </div>
     </div>
@@ -64,7 +66,7 @@
 
 <script>
 import UserServices from '../services/UserServices'
-import { required } from 'vuelidate/lib/validators'
+import { required, minLength } from 'vuelidate/lib/validators'
 
 export default {
   name: 'NovaPessoa',
@@ -85,7 +87,7 @@ export default {
     user: {
       firstName: { required },
       lastName: { required },
-      cpf: { required }
+      cpf: { required, minLength: minLength(14) }
     }
   },
 
@@ -94,19 +96,18 @@ export default {
       this.$v.$touch()
 
       if (this.$v.$invalid) {
-        alert('O formulário não pode ser enviado vazio!');
+        alert('O formulário não pode ser enviado vazio!')
       } else {
         UserServices.save(this.user)
-          
+
           .then(res => {
             this.user = {}
             console.log(res.data)
-            document.location.reload();
+            document.location.reload()
           })
           .catch(err => {
             console.log(err)
           })
-          
       }
     }
   }

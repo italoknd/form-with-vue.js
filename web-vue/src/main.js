@@ -8,8 +8,10 @@ import "materialize-css/dist/css/materialize.css";
 import "material-design-icons/iconfont/material-icons.css";
 import router from "./router";
 import Vuelidate from 'vuelidate';
+import VueMask from 'v-mask';
 
 Vue.use(Vuelidate)
+Vue.use(VueMask)
 
 Vue.config.productionTip = false
 
