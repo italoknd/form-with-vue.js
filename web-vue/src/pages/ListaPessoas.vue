@@ -18,73 +18,66 @@
           <td>{{ user.cpf }}</td>
           <td>
             <div class="links">
-              <router-link :to='{name:"EditarRegistro", params:{id:user.id}}'>
-                <a
-                
-                  class="waves-effect waves-light btn-small yellow accent-4"
-                  >Editar</a
-                >
+              <router-link :to="{ name: 'EditarRegistro', params: { id: user.id } }">
+                <a class="waves-effect waves-light btn-small yellow accent-4">Editar</a>
               </router-link>
-              <a
-                @click="remove(user)"
-                class="waves-effect waves-light btn-small red darken-4"
-                >Excluir</a
-              >
+              <a @click="remove(user)" class="waves-effect waves-light btn-small red darken-4">Excluir</a>
             </div>
           </td>
         </tr>
-          <router-link to="/nova-pessoa">
-            <button class="btn waves-effect waves-light">
-              Fazer um cadastro
-            </button>
-          </router-link>
+        <router-link to="/nova-pessoa">
+          <button class="btn waves-effect waves-light">
+            Fazer um cadastro
+          </button>
+        </router-link>
       </tbody>
     </table>
   </div>
 </template>
 
 <script>
-import UserServices from '../services/UserServices'
-import NoUsers from '../components/NoUsers.vue'
+import UserServices from '../services/UserServices';
+import NoUsers from '../components/NoUsers.vue';
 
 export default {
   name: 'ListaUsuarios',
   data() {
     return {
-      users: []
-    }
+      users: [],
+    };
   },
   components: {
-    NoUsers
+    NoUsers,
   },
   mounted() {
-    this.findAllUsers()
+    this.findAllUsers();
   },
   methods: {
     findAllUsers() {
       UserServices.findAll()
         .then(res => {
-          this.users = res.data
+          this.users = res.data;
           // eslint-disable-next-line no-console
-          console.log(this.users)
+          console.log(this.users);
         })
         .catch(err => {
           // eslint-disable-next-line no-console
-          console.log(err)
-        })
+          console.log(err);
+        });
     },
+    
     remove(user) {
       UserServices.delete(user)
         .then(() => {
-          this.findAllUsers()
+          this.findAllUsers();
         })
         .catch(err => {
           // eslint-disable-next-line no-console
-          console.log(err)
-        })
-    }
-  }
-}
+          console.log(err);
+        });
+    },
+  },
+};
 </script>
 
 <style scoped>

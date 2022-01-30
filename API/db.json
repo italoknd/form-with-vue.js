@@ -1,3 +1,35 @@
 {
-  "users": []
+  "users": [
+    {
+      "firstName": "dwdwdwd",
+      "lastName": "dw",
+      "cpf": "43232",
+      "isDisabled": true,
+      "id": 2
+    },
+    {
+      "firstName": "dadas",
+      "lastName": "dqwdw",
+      "cpf": "141355",
+      "id": 3
+    },
+    {
+      "firstName": "cacsca",
+      "lastName": "wfwefwe",
+      "cpf": "34565",
+      "id": 4
+    },
+    {
+      "firstName": "dwwdwd",
+      "lastName": "dwdwdwd",
+      "cpf": "3252355",
+      "id": 5
+    },
+    {
+      "firstName": "wfwefwef",
+      "lastName": "fwefwe",
+      "cpf": "5235253523",
+      "id": 6
+    }
+  ]
 }

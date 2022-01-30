@@ -9,8 +9,7 @@
                 id="first_name"
                 type="text"
                 class="validate"
-                :v-model="user.firstName"
-                required
+                v-model="$v.user.firstName.$model"
               />
               <label for="first_name">Nome</label>
             </div>
@@ -19,8 +18,8 @@
                 id="last_name"
                 type="text"
                 class="validate"
-                :v-model="user.lastName"
-                required
+                v-model="$v.user.lastName.$model"
+                
               />
               <label for="last_name">Sobrenome</label>
             </div>
@@ -31,18 +30,19 @@
                 id="text"
                 type="text"
                 class="validate"
-                :v-model="user.cpf"
+                v-model="$v.user.cpf.$model"
                 maxlength="11"
-                required
               />
               <label for="text">CPF</label>
             </div>
           </div>
           <button
-            @click="send(e)"
+            @click="send()"
+            :disabled="$v.user.cpf.$invalid == isDisabled || $v.user.lastName.$invalid == isDisabled || $v.user.firstName.$invalid"
             class="btn waves-effect waves-light"
             type="submit"
             name="action"
+            id="submit"
           >
             Enviar
             <i class="material-icons right">send</i>
@@ -64,6 +64,7 @@
 
 <script>
 import UserServices from '../services/UserServices'
+import { required } from 'vuelidate/lib/validators'
 
 export default {
   name: 'NovaPessoa',
@@ -71,36 +72,41 @@ export default {
   data() {
     return {
       user: {
-        firstName: null,
-        lastName: null,
-        cpf: null
+        firstName: '',
+        lastName: '',
+        cpf: ''
       },
-      users: [],
       isDisabled: true,
-      errors: []
+      users: []
     }
   },
+
+  validations: {
+    user: {
+      firstName: { required },
+      lastName: { required },
+      cpf: { required }
+    }
+  },
+
   methods: {
     send() {
-      if (
-        this.user.firstName == null ||
-        this.user.lastName == null ||
-        this.user.cpf == null
-      ) {
-        this.isDisabled = true
-        alert('error')
+      this.$v.$touch()
+
+      if (this.$v.$invalid) {
+        alert('O formulário não pode ser enviado vazio!');
       } else {
-        this.isDisabled = false
         UserServices.save(this.user)
+          
           .then(res => {
             this.user = {}
-            // eslint-disable-next-line no-console
             console.log(res.data)
+            document.location.reload();
           })
           .catch(err => {
-            // eslint-disable-next-line no-console
             console.log(err)
           })
+          
       }
     }
   }

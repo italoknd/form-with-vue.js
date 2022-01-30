@@ -12,7 +12,7 @@
                 v-model="user.firstName"
                 required
               />
-              <label for="first_name">Nome</label>
+              <label for="first_name" class="active">Nome</label>
             </div>
             <div class="input-field col s6">
               <input
@@ -22,7 +22,7 @@
                 v-model="user.lastName"
                 required
               />
-              <label for="last_name">Sobrenome</label>
+              <label for="last_name" class="active">Sobrenome</label>
             </div>
           </div>
           <div class="row">
@@ -35,7 +35,7 @@
                 maxlength="11"
                 required
               />
-              <label for="text">CPF</label>
+              <label for="text" class="active">CPF</label>
             </div>
           </div>
           <button
@@ -43,6 +43,11 @@
             class="btn waves-effect waves-light"
             type="submit"
             name="action"
+            :disabled="
+              $v.user.cpf.$invalid == isDisabled ||
+                $v.user.lastName.$invalid == isDisabled ||
+                $v.user.firstName.$invalid
+            "
           >
             Atualizar Registro
             <i class="material-icons right">send</i>
@@ -64,6 +69,7 @@
 
 <script>
 import axios from 'axios'
+import { required } from 'vuelidate/lib/validators'
 
 export default {
   name: 'EditarRegistro',
@@ -73,10 +79,19 @@ export default {
       user: {
         firstName: '',
         lastName: '',
-        cpf: ''
+        cpf: '',
+        isDisabled: true
       }
     }
   },
+  validations: {
+    user: {
+      firstName: { required },
+      lastName: { required },
+      cpf: { required }
+    }
+  },
+
   mounted() {
     this.findAll()
   },
@@ -86,7 +101,9 @@ export default {
         .get(`http://localhost:3000/users/${this.$route.params.id}`)
         .then(res => {
           const { firstName, lastName, cpf } = res.data
-          ;(this.user.firstName = firstName), (this.user.lastName = lastName), (this.user.cpf = cpf);
+          ;(this.user.firstName = firstName),
+            (this.user.lastName = lastName),
+            (this.user.cpf = cpf)
           // eslint-disable-next-line no-console
           console.log(firstName, lastName)
         })
@@ -104,3 +121,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.active {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 10%;
+}
+</style>
