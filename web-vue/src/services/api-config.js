@@ -9,8 +9,8 @@
 // }
 
 // export const API_ROOT = 'http://' + hostname + ':8080'
-import axios from "axios";
+import axios from 'axios'
 
 export const http = axios.create({
-  baseURL: "http://localhost:3000/",
-});
+  baseURL: 'https://api-register-users.herokuapp.com/'
+})
