@@ -93,7 +93,6 @@ export default {
 
           setTimeout(() => {
             this.message = ''
-            this.message = false;
           }, 7000)
         })
         .catch(err => {
