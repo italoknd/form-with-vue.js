@@ -141,21 +141,4 @@ export default {
 button {
   margin-right: 5px;
 }
-
-.active {
-  display: block;
-  content: '';
-  position: absolute;
-  top: 10%;
-  animation: shrink 7s;
-}
-
-@keyframes shrink {
-  from {
-    top: 10%
-  }
-  to {
-    top: 100%
-  }
-}
 </style>

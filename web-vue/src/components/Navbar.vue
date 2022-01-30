@@ -2,7 +2,7 @@
   <div>
     <nav>
       <div class="nav-wrapper">
-        <a href="#" class="brand-logo right">Logo</a>
+        <router-link to="/"><a href="#" class="brand-logo right">Registro de Usuários</a></router-link>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
           <li>
             <router-link to="/"><a>Home</a></router-link>
