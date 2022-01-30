@@ -1,12 +1,11 @@
 <template>
   <div>
     <MensagemConclusao
-      :mensagemConclusao="mensagem"
-      :nameIcon="checkIcon"
+      :mensagemConclusao="message"
       :color="color"
       :border="border"
       :background="background"
-      v-show="mensagem"
+      v-show="message"
     />
     <div id="form-container">
       <div class="row">
@@ -90,11 +89,11 @@ export default {
       },
       isDisabled: true,
       users: [],
-      mensagem: '',
+      message: '',
       checkIcon: 'checkmark-outline',
-      background: '#4CAF50',
+      background: '#2BBBAD',
       color: 'white',
-      border: ' 2px solid #4CAF50',
+      border: '1px inset #2BBBAD',
     }
   },
 
@@ -122,10 +121,10 @@ export default {
           .then(res => {
             this.user = {}
             console.log(res.data)
-            this.mensagem = 'Dados enviados com sucesso!'
+            this.message = 'Dados enviados com sucesso!'
 
             setTimeout(() => {
-              this.mensagem = ''
+              this.message = ''
               document.location.reload()
             }, 7000)
           })

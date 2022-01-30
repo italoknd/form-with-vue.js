@@ -1,10 +1,10 @@
 <template>
-  <div :style="{border: border, color: color, background: background }" class="message-container">
+  <div
+    :style="{ border: border, color: color, background: background }"
+    class="message-container"
+  >
     <p>
-      <strong
-        >{{ mensagemConclusao }}
-        <ion-icon :name="nameIcon"></ion-icon>
-      </strong>
+      <strong>{{ mensagemConclusao }} </strong>
     </p>
   </div>
 </template>
@@ -14,35 +14,26 @@ export default {
   name: 'MensagemConclusao',
   props: {
     mensagemConclusao: String,
-    nameIcon: String,
     background: String,
     color: String,
     border: String
   },
-  data() {
-    return {
-      checkIcon: 'checkmark-outline'
-    }
-  }
 }
 </script>
 
 <style scoped>
 .message-container {
-  /* color: ;*/
-  /* background: #cce5ff; */
-  /* border: 2px solid #4CAF50; */
   border-radius: 5px;
-  padding: 10px;
   margin: auto;
-  max-width: 300px;
-  margin-bottom: 30px;
+  max-width: 250px;
+  padding: 10px;
+  margin-bottom: 23px;
   animation: fadeOut 7s;
 }
 
 @keyframes fadeOut {
   0% {
-    opacity: 1;
+    opacity: 0;
     margin-top: 30px;
   }
   25% {
@@ -59,11 +50,13 @@ export default {
   }
   100% {
     opacity: 0;
-    margin-top: -120px;
+    margin-top: -100px;
   }
 }
 
 p {
   text-align: center;
+  font-weight: bold;
+  font-size: 16px;
 }
 </style>

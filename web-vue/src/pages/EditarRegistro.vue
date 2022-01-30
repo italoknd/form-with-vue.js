@@ -1,13 +1,5 @@
 <template>
   <div>
-    <MensagemConclusao
-      :mensagemConclusao="mensagem"
-      :nameIcon="checkIcon"
-      :color="color"
-      :border="border"
-      :background="background"
-      v-show="mensagem"
-    />
     <div id="form-container">
       <div class="row">
         <form class="col s12">
@@ -84,7 +76,7 @@ export default {
       isDisabled: true,
       background: '',
       color: '',
-      border: '',
+      border: ''
     }
   },
   validations: {
@@ -123,9 +115,10 @@ export default {
           }`,
           this.user
         )
+
         .then(res => {
-          this.user = {}
           document.location.reload()
+          this.user = {}
           console.log(res)
         })
     }
@@ -134,6 +127,10 @@ export default {
 </script>
 
 <style scoped>
+div {
+  max-width: 800px;
+  margin: 10px auto;
+}
 .active {
   display: block;
   content: '';

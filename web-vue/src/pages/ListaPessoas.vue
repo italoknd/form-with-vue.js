@@ -1,15 +1,14 @@
 /* eslint-disable no-console */
 <template>
   <div>
+    <NoUsers v-if="users == 0" />
     <MensagemConclusao
-      :mensagemConclusao="mensagem"
-      :nameIcon="checkIcon"
+      :mensagemConclusao="message"
       :background="background"
       :color="color"
       :border="border"
-      v-show="mensagem"
+      v-show="message"
     />
-    <NoUsers v-if="users == 0" />
     <table v-if="users != 0">
       <thead>
         <tr>
@@ -61,11 +60,10 @@ export default {
   data() {
     return {
       users: [],
-      mensagem: '',
-      checkIcon: 'close-outline',
-      background: '#B71C1C',
+      message: '',
+      background: '#d82a2a',
       color: 'white',
-      border: ' 2px solid #B71C1C'
+      border: '1px inset #d82a2a'
     }
   },
   components: {
@@ -80,11 +78,9 @@ export default {
       UserServices.findAll()
         .then(res => {
           this.users = res.data
-          // eslint-disable-next-line no-console
           console.log(this.users)
         })
         .catch(err => {
-          // eslint-disable-next-line no-console
           console.log(err)
         })
     },
@@ -93,17 +89,17 @@ export default {
       UserServices.delete(user)
         .then(() => {
           this.findAllUsers()
-          this.mensagem = 'Usuário deletado com sucesso!'
+          this.message = 'Usuário deletado com sucesso!'
 
           setTimeout(() => {
-            this.mensagem = ''
+            this.message = ''
+            this.message = false;
           }, 7000)
         })
         .catch(err => {
-          // eslint-disable-next-line no-console
           console.log(err)
         })
-    }
+    },
   }
 }
 </script>
@@ -116,6 +112,7 @@ div {
 
 button {
   margin-top: 20px;
+  margin-bottom: 50px;
 }
 
 .links {
