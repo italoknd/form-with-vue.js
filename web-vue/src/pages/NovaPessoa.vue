@@ -1,5 +1,6 @@
 <template>
   <div>
+    <MensagemConclusao :mensagemConclusao="mensagem" v-show="mensagem" />
     <div id="form-container">
       <div class="row">
         <form class="col s12">
@@ -67,8 +68,10 @@
 <script>
 import UserServices from '../services/UserServices'
 import { required, minLength } from 'vuelidate/lib/validators'
+import MensagemConclusao from '../components/MensagemConclusao.vue'
 
 export default {
+  components: { MensagemConclusao },
   name: 'NovaPessoa',
 
   data() {
@@ -79,8 +82,13 @@ export default {
         cpf: ''
       },
       isDisabled: true,
-      users: []
+      users: [],
+      mensagem: ''
     }
+  },
+
+  component: {
+    MensagemConclusao
   },
 
   validations: {
@@ -103,7 +111,12 @@ export default {
           .then(res => {
             this.user = {}
             console.log(res.data)
-            document.location.reload()
+            this.mensagem = 'Dados enviados com sucesso!'
+
+            setTimeout(() => {
+              this.mensagem = ''
+              document.location.reload()
+            }, 7000)
           })
           .catch(err => {
             console.log(err)
@@ -127,5 +140,22 @@ export default {
 
 button {
   margin-right: 5px;
+}
+
+.active {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 10%;
+  animation: shrink 7s;
+}
+
+@keyframes shrink {
+  from {
+    top: 10%
+  }
+  to {
+    top: 100%
+  }
 }
 </style>

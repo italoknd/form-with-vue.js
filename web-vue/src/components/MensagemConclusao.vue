@@ -1,0 +1,57 @@
+<template>
+  <div class="message-container">
+    <p>
+      <strong>{{ mensagemConclusao }}</strong>
+    </p>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'MensagemConclusao',
+  props: {
+    mensagemConclusao: String
+  }
+}
+</script>
+
+<style scoped>
+.message-container {
+  color: #004085;
+  background: #cce5ff;
+  border: 2px solid #b8daff;
+  border-radius: 5px;
+  padding: 10px;
+  margin: auto;
+  max-width: 300px;
+  margin-bottom: 30px;
+  animation: fadeOut 7s;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    margin-top: 30px;
+  }
+  25% {
+    opacity: 1;
+    margin-top: 30px;
+  }
+  50% {
+    opacity: 1;
+    margin-top: 30px;
+  }
+  75% {
+    opacity: 0;
+    margin-top: 30px;
+  }
+  100% {
+    opacity: 0;
+    margin-top: -120px;
+  }
+}
+
+p {
+  text-align: center;
+}
+</style>
