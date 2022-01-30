@@ -1,6 +1,14 @@
 /* eslint-disable no-console */
 <template>
   <div>
+    <MensagemConclusao
+      :mensagemConclusao="mensagem"
+      :nameIcon="checkIcon"
+      :background="background"
+      :color="color"
+      :border="border"
+      v-show="mensagem"
+    />
     <NoUsers v-if="users == 0" />
     <table v-if="users != 0">
       <thead>
@@ -18,10 +26,18 @@
           <td>{{ user.cpf }}</td>
           <td>
             <div class="links">
-              <router-link :to="{ name: 'EditarRegistro', params: { id: user.id } }">
-                <a class="waves-effect waves-light btn-small yellow accent-4">Editar</a>
+              <router-link
+                :to="{ name: 'EditarRegistro', params: { id: user.id } }"
+              >
+                <a class="waves-effect waves-light btn-small yellow accent-4"
+                  >Editar</a
+                >
               </router-link>
-              <a @click="remove(user)" class="waves-effect waves-light btn-small red darken-4">Excluir</a>
+              <a
+                @click="remove(user)"
+                class="waves-effect waves-light btn-small red darken-4"
+                >Excluir</a
+              >
             </div>
           </td>
         </tr>
@@ -36,48 +52,60 @@
 </template>
 
 <script>
-import UserServices from '../services/UserServices';
-import NoUsers from '../components/NoUsers.vue';
+import UserServices from '../services/UserServices'
+import NoUsers from '../components/NoUsers.vue'
+import MensagemConclusao from '../components/MensagemConclusao.vue'
 
 export default {
   name: 'ListaUsuarios',
   data() {
     return {
       users: [],
-    };
+      mensagem: '',
+      checkIcon: 'close-outline',
+      background: '#B71C1C',
+      color: 'white',
+      border: ' 2px solid #B71C1C'
+    }
   },
   components: {
     NoUsers,
+    MensagemConclusao
   },
   mounted() {
-    this.findAllUsers();
+    this.findAllUsers()
   },
   methods: {
     findAllUsers() {
       UserServices.findAll()
         .then(res => {
-          this.users = res.data;
+          this.users = res.data
           // eslint-disable-next-line no-console
-          console.log(this.users);
+          console.log(this.users)
         })
         .catch(err => {
           // eslint-disable-next-line no-console
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    
+
     remove(user) {
       UserServices.delete(user)
         .then(() => {
-          this.findAllUsers();
+          this.findAllUsers()
+          this.mensagem = 'Usuário deletado com sucesso!'
+
+          setTimeout(() => {
+            this.mensagem = ''
+          }, 7000)
         })
         .catch(err => {
           // eslint-disable-next-line no-console
-          console.log(err);
-        });
-    },
-  },
-};
+          console.log(err)
+        })
+    }
+  }
+}
 </script>
 
 <style scoped>

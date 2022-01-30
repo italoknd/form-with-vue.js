@@ -1,5 +1,13 @@
 <template>
   <div>
+    <MensagemConclusao
+      :mensagemConclusao="mensagem"
+      :nameIcon="checkIcon"
+      :color="color"
+      :border="border"
+      :background="background"
+      v-show="mensagem"
+    />
     <div id="form-container">
       <div class="row">
         <form class="col s12">
@@ -73,7 +81,10 @@ export default {
         lastName: '',
         cpf: ''
       },
-      isDisabled: true
+      isDisabled: true,
+      background: '',
+      color: '',
+      border: '',
     }
   },
   validations: {
@@ -90,7 +101,11 @@ export default {
   methods: {
     findAll() {
       axios
-        .get(`https://api-register-users.herokuapp.com/users/${this.$route.params.id}`)
+        .get(
+          `https://api-register-users.herokuapp.com/users/${
+            this.$route.params.id
+          }`
+        )
         .then(res => {
           const { firstName, lastName, cpf } = res.data
           ;(this.user.firstName = firstName),
@@ -102,7 +117,12 @@ export default {
 
     update() {
       axios
-        .put(`https://api-register-users.herokuapp.com/users/${this.$route.params.id}`, this.user)
+        .put(
+          `https://api-register-users.herokuapp.com/users/${
+            this.$route.params.id
+          }`,
+          this.user
+        )
         .then(res => {
           this.user = {}
           document.location.reload()

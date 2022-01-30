@@ -1,7 +1,10 @@
 <template>
-  <div class="message-container">
+  <div :style="{border: border, color: color, background: background }" class="message-container">
     <p>
-      <strong>{{ mensagemConclusao }}<ion-icon name="checkmark-outline"></ion-icon></strong>
+      <strong
+        >{{ mensagemConclusao }}
+        <ion-icon :name="nameIcon"></ion-icon>
+      </strong>
     </p>
   </div>
 </template>
@@ -11,15 +14,24 @@ export default {
   name: 'MensagemConclusao',
   props: {
     mensagemConclusao: String,
+    nameIcon: String,
+    background: String,
+    color: String,
+    border: String
+  },
+  data() {
+    return {
+      checkIcon: 'checkmark-outline'
+    }
   }
 }
 </script>
 
 <style scoped>
 .message-container {
-  color: #4CAF50;
+  /* color: ;*/
   /* background: #cce5ff; */
-  border: 2px solid #4CAF50;
+  /* border: 2px solid #4CAF50; */
   border-radius: 5px;
   padding: 10px;
   margin: auto;

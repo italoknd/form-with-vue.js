@@ -1,6 +1,13 @@
 <template>
   <div>
-    <MensagemConclusao :mensagemConclusao="mensagem" v-show="mensagem" />
+    <MensagemConclusao
+      :mensagemConclusao="mensagem"
+      :nameIcon="checkIcon"
+      :color="color"
+      :border="border"
+      :background="background"
+      v-show="mensagem"
+    />
     <div id="form-container">
       <div class="row">
         <form class="col s12">
@@ -83,7 +90,11 @@ export default {
       },
       isDisabled: true,
       users: [],
-      mensagem: ''
+      mensagem: '',
+      checkIcon: 'checkmark-outline',
+      background: '#4CAF50',
+      color: 'white',
+      border: ' 2px solid #4CAF50',
     }
   },
 
