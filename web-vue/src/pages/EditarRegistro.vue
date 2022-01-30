@@ -90,7 +90,7 @@ export default {
   methods: {
     findAll() {
       axios
-        .get(`http://localhost:3000/users/${this.$route.params.id}`)
+        .get(`https://api-register-users.herokuapp.com/users/${this.$route.params.id}`)
         .then(res => {
           const { firstName, lastName, cpf } = res.data
           ;(this.user.firstName = firstName),
@@ -103,7 +103,7 @@ export default {
 
     update() {
       axios
-        .put(`http://localhost:3000/users/${this.$route.params.id}`, this.user)
+        .put(`https://api-register-users.herokuapp.com/users/${this.$route.params.id}`, this.user)
         .then(res => {
           this.user = {}
           // eslint-disable-next-line no-console
