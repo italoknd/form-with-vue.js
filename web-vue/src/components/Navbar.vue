@@ -7,7 +7,7 @@
             >Registro de Usuários</a
           ></router-link
         >
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <ul id="nav-mobile" class="left  show-on-medium-and-down">
           <li>
             <router-link to="/"><a>Home</a></router-link>
           </li>
@@ -33,5 +33,9 @@ nav-wrapper {
 #nav-mobile {
   display: flex;
   margin: auto;
+}
+
+.brand-logo{
+  font-size: 1.5rem;
 }
 </style>
