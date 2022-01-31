@@ -1,22 +1,4 @@
 {
   "users": [
-    {
-      "firstName": "Albert",
-      "lastName": "Einstein",
-      "cpf": "324.554.545-46",
-      "id": 14
-    },
-    {
-      "firstName": "rww",
-      "lastName": "frf",
-      "cpf": "324.234.234-23",
-      "id": 15
-    },
-    {
-      "firstName": "dada",
-      "lastName": "feefe",
-      "cpf": "312.312.433-43",
-      "id": 16
-    }
   ]
 }
