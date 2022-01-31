@@ -41,6 +41,7 @@
               <label for="text">CPF</label>
             </div>
           </div>
+        </form>
           <router-link to="lista-pessoas">
             <button
               class="btn waves-effect waves-light pink darken-1"
@@ -55,7 +56,7 @@
             :disabled="
               $v.user.cpf.$invalid == isDisabled ||
                 $v.user.lastName.$invalid == isDisabled ||
-                $v.user.firstName.$invalid
+                $v.user.firstName.$invalid == isDisabled
             "
             class="btn waves-effect waves-light"
             type="submit"
@@ -65,7 +66,6 @@
             Enviar
             <i class="material-icons right">send</i>
           </button>
-        </form>
       </div>
     </div>
   </div>
@@ -125,7 +125,6 @@ export default {
 
             setTimeout(() => {
               this.message = ''
-              document.location.reload()
             }, 3000)
           })
           .catch(err => {
@@ -143,12 +142,8 @@ export default {
   margin: auto;
 }
 
-.buttons {
-  max-width: 800px;
-  margin: auto;
-}
-
-button {
-  margin-right: 5px;
+button,
+router-link button{
+  margin-left: 10px;
 }
 </style>
