@@ -23,7 +23,7 @@ export default {
   margin: 30vh auto;
   max-width: 800px;
   min-width: 320px;
-  animation: up 7s;
+  animation: up 3s;
 }
 
 @keyframes up {

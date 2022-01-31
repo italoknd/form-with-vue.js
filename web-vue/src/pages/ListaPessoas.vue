@@ -93,7 +93,7 @@ export default {
 
           setTimeout(() => {
             this.message = ''
-          }, 7000)
+          }, 3000)
         })
         .catch(err => {
           console.log(err)

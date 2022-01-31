@@ -126,7 +126,7 @@ export default {
             setTimeout(() => {
               this.message = ''
               document.location.reload()
-            }, 7000)
+            }, 3000)
           })
           .catch(err => {
             console.log(err)

@@ -28,7 +28,7 @@ export default {
   max-width: 250px;
   padding: 10px;
   margin-bottom: 23px;
-  animation: fadeOut 7s;
+  animation: fadeOut 3s;
 }
 
 @keyframes fadeOut {
