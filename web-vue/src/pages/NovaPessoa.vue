@@ -125,6 +125,7 @@ export default {
 
             setTimeout(() => {
               this.message = ''
+              location.reload()
             }, 3000)
           })
           .catch(err => {
