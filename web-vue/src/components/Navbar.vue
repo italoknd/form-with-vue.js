@@ -27,6 +27,7 @@ nav-wrapper {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin: auto;
 }
 
 #nav-mobile {

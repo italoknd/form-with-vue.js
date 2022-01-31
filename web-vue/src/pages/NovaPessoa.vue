@@ -114,7 +114,7 @@ export default {
       this.$v.$touch()
 
       if (this.$v.$invalid) {
-        alert('O formulário não pode ser enviado vazio!')
+        // alert('O formulário não pode ser enviado vazio!')
       } else {
         UserServices.save(this.user)
 

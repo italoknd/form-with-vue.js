@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 <template>
   <div>
-    <NoUsers v-if="users == 0" />
     <MensagemConclusao
       :mensagemConclusao="message"
       :background="background"
@@ -9,6 +8,7 @@
       :border="border"
       v-show="message"
     />
+    <NoUsers v-if="users == 0" />
     <table v-if="users != 0">
       <thead>
         <tr>
