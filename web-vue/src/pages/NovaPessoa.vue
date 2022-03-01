@@ -42,30 +42,30 @@
             </div>
           </div>
         </form>
-          <router-link to="lista-pessoas">
-            <button
-              class="btn waves-effect waves-light pink darken-1"
-              name="action"
-            >
-              Voltar
-              <i class="material-icons left">arrow_back</i>
-            </button>
-          </router-link>
+        <router-link to="lista-pessoas">
           <button
-            @click="send()"
-            :disabled="
-              $v.user.cpf.$invalid == isDisabled ||
-                $v.user.lastName.$invalid == isDisabled ||
-                $v.user.firstName.$invalid == isDisabled
-            "
-            class="btn waves-effect waves-light"
-            type="submit"
+            class="btn waves-effect waves-light pink darken-1"
             name="action"
-            id="submit"
           >
-            Enviar
-            <i class="material-icons right">send</i>
+            Voltar
+            <i class="material-icons left">arrow_back</i>
           </button>
+        </router-link>
+        <button
+          @click="send()"
+          :disabled="
+            $v.user.cpf.$invalid == isDisabled ||
+              $v.user.lastName.$invalid == isDisabled ||
+              $v.user.firstName.$invalid == isDisabled
+          "
+          class="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+          id="submit"
+        >
+          Enviar
+          <i class="material-icons right">send</i>
+        </button>
       </div>
     </div>
   </div>
@@ -93,7 +93,7 @@ export default {
       checkIcon: 'checkmark-outline',
       background: '#2BBBAD',
       color: 'white',
-      border: '1px inset #2BBBAD',
+      border: '1px inset #2BBBAD'
     }
   },
 
@@ -144,7 +144,7 @@ export default {
 }
 
 button,
-router-link button{
+router-link button {
   margin-left: 10px;
 }
 </style>
