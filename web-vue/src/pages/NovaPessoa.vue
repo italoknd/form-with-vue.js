@@ -89,6 +89,7 @@ export default {
       },
       isDisabled: true,
       users: [],
+      
       message: '',
       checkIcon: 'checkmark-outline',
       background: '#2BBBAD',
